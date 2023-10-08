@@ -17,5 +17,12 @@ router.post("/notes", (req, res) => {
     response.json(data);
 })
 
+router.delete("/api/notes/:id", (request, response) => {
+let noteId = request.params.id.toString();
+let data = JSON.parse(fs.readFileSync("./db/db.json", "utf8"));
+const newData = data.filter( note => note.id.toString() !== noteId );
+fs.writeFileSync('./db/db.json', JSON.stringify(newData));
+response.json(newData);
+});
 
 module.exports = router;

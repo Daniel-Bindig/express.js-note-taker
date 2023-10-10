@@ -17,6 +17,6 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Something went wrong' });
 });
 
-app.listen(PORT, () =>
+app.listen(process.env.PORT || 3001, () =>
   console.log(`Listening on port ${PORT}`)
 );
